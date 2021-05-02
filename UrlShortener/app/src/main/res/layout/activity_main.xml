@@ -8,10 +8,11 @@
 
     <TextView
         android:id="@+id/textView2a"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="183dp"
+        android:layout_height="181dp"
         android:text="Url Shortener"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -27,15 +28,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/btnEncurta"
+        app:layout_constraintTop_toBottomOf="@+id/textView2a"
+        app:errorEnabled="true">
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/txtUrl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Digite a URL"
-        app:layout_constraintBottom_toTopOf="@+id/btnEncurta"
-        app:layout_constraintTop_toBottomOf="@+id/textView2a"
         tools:layout_editor_absoluteX="5dp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/txtUrlShort"

@@ -1,6 +1,5 @@
 package com.example.urlshortener.view
 
-import android.R.attr.label
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -11,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.urlshortener.R
 import com.example.urlshortener.data.api.ApiAdapter
 import com.example.urlshortener.ui.main.MainViewModel
+import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
                 val map = HashMap<String, String>()
                 map.put("url", txtUrl.text.toString())
                 val response = ApiAdapter().apiClient.encurtaUrl(map)
+                text_input_layout.error = null
                 if (response!!.isSuccessful && response.body() != null) {
                     txtUrlShort.setText(response.body()!!.url?.get(0)?.get("shortUrl").toString())
                     textView4.visibility = View.VISIBLE
@@ -48,16 +49,11 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
                         Toast.makeText(it.context, "Link Copiado", Toast.LENGTH_SHORT).show()
 
                     }
+                } else {
+                    text_input_layout.error = "Url Inválida"
                 }
             }
-/*            mainViewModel.text = txtUrl.text.toString()
-            mainViewModel.url.observe(this, Observer {
-                when (it.status) {
-                    Status.SUCCESS -> {
-                        txtUrlShort.setText(it.data?.url?.get(0)?.get("shortUrl").toString())
-                    }
-                }
-            })*/
+
         }
     }
 }
